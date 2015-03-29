@@ -1,1 +1,79 @@
-<p>This is the partial for view 1.</p>
+<div class="container">
+      <h1>Family Jewels</h1>
+      <!-- =========== Left Boxes =========== -->
+      <div class="contentBox">
+        <div class="optionsDiv">
+          <h3>Current Statistics</h3>
+          <p>Day: {{currentDay}}</br>
+          Cash: {{playerCash | currency}}</br>
+          Garnet: {{inventoryGarnet}}</br>
+          Sapphire: {{inventorySapphire}}</br>
+          Emerald: {{inventoryEmerald}}</br>
+          Ruby: {{inventoryRuby}}</br>
+          Diamond: {{inventoryDiamond}}</p>
+        </div>
+        <div class="manipulateDiv">
+          <h3>Current Market Prices</h3> 
+          <p>
+          Garnet: {{priceGarnet | currency}}</br>
+          Sapphire: {{priceSapphire | currency}}</br>
+          Emerald: {{priceEmerald | currency}}</br>
+          Ruby: {{priceRuby | currency}}</br>
+          Diamond: {{priceDiamond | currency}}
+          </p>     
+        </div>
+        
+      </div>
+        <!-- =========== Right Boxes =========== -->
+      <div class="contentBox">
+        
+        <!-- =========== Options Box =========== -->
+        <div class="optionsDiv">
+          <h3>Options</h3>
+          <div class="buttonsDiv">
+                <button class="buyBtn" ng-click="buyOption()">Buy</button>
+                <button class="sellBtn" ng-click="sellOption()">Sell</button>
+                <button class="newDayBtn" ng-click="newDay()">New Day</button>
+                <button class="resetBtn" ng-click="resetGame()">Reset Game</button>   
+          </div>
+        </div>
+         
+        <!-- =========== Action Info Box =========== --> 
+        <div class="manipulateDiv">
+          <h3 ng-show="isAction">Action Box</h3>
+          <h3 ng-show="isBuy">Buy Options</h3>
+          <h3 ng-show="isSell">Sell Options</h3>
+          <div class="manipulateSubDiv">
+            <form name="myForm" novalidate>
+	            <div class="mealDetail">
+	             <h4 ng-show="isAction" class="actionText">Select an Option Above</h4>
+	              <div ng-show="isBuy || isSell" class="actionText">Jewel:</div>
+	              <div ng-show="isBuy || isSell" class="actionBox">
+	              	<!--  <input name="jewel" type="text" ng-model="data.jewel" required>-->
+	              	<select ng-model="data.jewel" ng-options="item.ID as item.Title for item in items">
+	              		<option style="display:none" value="">Select a Jewel</option>
+	              	</select>
+	              </div>
+	              <div ng-show="isBuy || isSell" class="actionText">Amount:</div>
+	              <div ng-show="isBuy || isSell" class="actionBox">
+	              	<input integer name="quantity" type="number" ng-model="data.quantity" min='0' max='100' required>
+	              </div>       	
+	              <div ng-show="isBuy || isSell" class="error">
+	                <span ng-show="myForm.$error.required">Fill-in: </span>
+	                  <span ng-show="myForm.jewel.$error.required">Jewel Name Required</span>
+	                  <span ng-show="myForm.quantity.$error.required">Quantity Required</span>
+	                  <span ng-show="myForm.quantity.$error.integer">The value is not a valid quantity!</span>
+	                </span>
+	                <span class="good" ng-show="!myForm.$error.required && !myForm.$error.integer">Good to go</span>
+	              </div>
+	            </div>
+	            <div ng-show="isBuy || isSell" class="buttons">
+	              <input ng-show="isBuy"  ng-click="buyJewel()" class="submit" type="submit" value="Buy">
+	              <input ng-show="isSell" ng-click="sellJewel()" class="submit" type="submit" value="Sell">
+	              <input class="cancel" ng-click="cancelAction()" type="reset" value="Cancel">
+	            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
