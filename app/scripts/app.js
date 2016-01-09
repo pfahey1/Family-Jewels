@@ -4,13 +4,12 @@
 var app = angular.module('myApp', [
   'ngRoute',
   'myApp.fj',
-  'myApp.view2',
-  'myApp.version'
+  'myApp.view2'
 ]);
 
 
 app.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
+  $routeProvider.otherwise({redirectTo: '/views/view1.html'});
 }]);
 
 var INTEGER_REGEXP = /^\-?\d+$/;

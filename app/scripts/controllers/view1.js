@@ -273,8 +273,8 @@ fj.controller('fjCtrl', function($scope,$window){
   });
 
 fj.config(['$routeProvider', function($routeProvider) {
-	  $routeProvider.when('/view1', {
-	    templateUrl: 'view1/view1.html',
+	  $routeProvider.when('/views/view1.html', {
+	    templateUrl: 'views/view1.html',
 	    controller: 'fjCtrl'
 	  });
 	}]);
